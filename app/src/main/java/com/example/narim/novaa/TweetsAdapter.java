@@ -44,7 +44,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.myViewHold
             try {
                 JSONObject reader = new JSONObject(response.toString());
                 JSONArray array=reader.getJSONArray("novas");
-                Log.e("array",String.valueOf(array.length()));
+                Log.e("arrayHome",String.valueOf(array.length()));
                 for(int i=0; i<array.length(); i++){
                     JSONObject c = array.getJSONObject(i);
                     com.example.narim.novaa.Tweets tweet = new Tweets("","","","","","","",true);
@@ -134,7 +134,9 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.myViewHold
     };
 
     private void getData(){
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://3.19.122.178:8080/statuses/home_timeline/dodo",
+        SharedPreferences m = PreferenceManager.getDefaultSharedPreferences(context);
+        String screenname=m.getString("signinscreenname","signinscreenname");
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://3.19.122.178:8080/statuses/home_timeline",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -171,10 +173,10 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.myViewHold
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> map = new HashMap<String, String>();
                 //map.put("X-Device-Info","Android FOO BAR");
-                // SharedPreferences m = PreferenceManager.getDefaultSharedPreferences(ProfilePage.this);
-                // String token = m.getString("signintoken", "signintoken");
+                SharedPreferences m = PreferenceManager.getDefaultSharedPreferences(context);
+                 String token = m.getString("signintoken", "signintoken");
                 //  String screenname = m.getString("signinscreenname", "signinscreenname");
-                //map.put("token","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2JhMDA5MzliOGIxNDIwMTA4Njc3MDUiLCJzY3JlZW5fbmFtZSI6ImRvZG8iLCJpYXQiOjE1NTY5ODY4MTl9.HsfrVYwkmtOzXFr491rH04EY_ojuJixcLTRzjU03WZY");
+                map.put("token",token);
                 // map.put("screen_name",screenname);
                 return map;
             }

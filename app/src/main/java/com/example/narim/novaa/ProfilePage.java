@@ -113,7 +113,7 @@ public class ProfilePage extends AppCompatActivity {
         editor.putString(key, value);
         editor.commit();
     };
-    private void getData(){
+   /* private void getData(){
         StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://3.19.122.178:8080/statuses/user_timeline/dodo",
                 new Response.Listener<String>() {
                     @Override
@@ -182,5 +182,5 @@ public class ProfilePage extends AppCompatActivity {
         VolleySingelton volleySingleton = VolleySingelton.getInstance(this);
         volleySingleton.getRequestQueue().add(stringRequest);
 
-    }
+    }*/
 }

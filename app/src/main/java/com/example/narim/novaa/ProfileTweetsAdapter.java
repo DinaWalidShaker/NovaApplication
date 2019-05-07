@@ -135,7 +135,10 @@ public class ProfileTweetsAdapter extends RecyclerView.Adapter<ProfileTweetsAdap
     };
 
     private void getData(){
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://3.19.122.178:8080/statuses/user_timeline/dodo",
+        SharedPreferences m = PreferenceManager.getDefaultSharedPreferences(context);
+        String screenname=m.getString("screenname","signinscreenname");
+        Log.e("screenname",screenname);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://3.19.122.178:8080/statuses/user_timeline/"+screenname,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

@@ -47,17 +47,6 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     DrawerLayout drawer;
 
     protected void onCreate(Bundle savedInstanceState) {
-       /* final String name = getIntent().getStringExtra("name");
-        final String id = getIntent().getStringExtra("id");
-        final String followerscount = getIntent().getStringExtra("followersCount");
-        final String favoritesCount = getIntent().getStringExtra("favoritesCount");
-        final String Novascount = getIntent().getStringExtra("novasCount");
-        final String email = getIntent().getStringExtra("email");
-        final String screenname = getIntent().getStringExtra("screenname");
-        final String verified = getIntent().getStringExtra("verified");
-        final String friendscout = getIntent().getStringExtra("friendsCount");
-        final String novascount = getIntent().getStringExtra("Novascount");
-        final String token = getIntent().getStringExtra("token");*/
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         Home = findViewById(R.id.Icon_Home_Home);
@@ -83,21 +72,18 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         TweetRecView.setLayoutManager(new LinearLayoutManager(HomePage.this));
         TweetsAdapter tweetsAdapter = new TweetsAdapter(this);
         TweetRecView.setAdapter(tweetsAdapter);
-
+        Home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(HomePage.this, HomePage.class);
+                startActivity(i);
+                finish();
+            }
+        });
         Profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(HomePage.this, ProfilePage.class);
-                /*i.putExtra("token", token);
-                i.putExtra("name", name);
-                i.putExtra("screenname", screenname);
-                i.putExtra("verified", verified);
-                i.putExtra("followersCount", followerscount);
-                i.putExtra("favoritesCount", favoritesCount);
-                i.putExtra("friendsCount", friendscout);
-                i.putExtra("novasCount", novascount);
-                i.putExtra("id", id);
-                i.putExtra("email", email);*/
                 startActivity(i);
                 finish();
 

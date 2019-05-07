@@ -59,6 +59,7 @@ public class ProfileRetweetsAdapter extends RecyclerView.Adapter<ProfileRetweets
                         tweet.RepliesNumber = String.valueOf(c.getInt("reply_count"));
                         tweet.Renovad = c.getBoolean("renovaed");
                         Tweets.add(tweet);
+                        Log.e("renovad",tweet.ProfileName);
                     }
                 }
             } catch (JSONException e) {
@@ -135,7 +136,9 @@ public class ProfileRetweetsAdapter extends RecyclerView.Adapter<ProfileRetweets
     };
 
     private void getData(){
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://3.19.122.178:8080/statuses/user_timeline/dodo",
+        SharedPreferences m = PreferenceManager.getDefaultSharedPreferences(context);
+        String screenname=m.getString("screenname","signinscreenname");
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://3.19.122.178:8080/statuses/user_timeline/"+screenname,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

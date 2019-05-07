@@ -138,7 +138,9 @@ public class ProfileMediaAdapter extends RecyclerView.Adapter<ProfileMediaAdapte
     };
 
     private void getData(){
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://3.19.122.178:8080/statuses/user_timeline/dodo",
+        SharedPreferences m = PreferenceManager.getDefaultSharedPreferences(context);
+        String screenname=m.getString("screenname","signinscreenname");
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://3.19.122.178:8080/statuses/user_timeline/"+screenname,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
